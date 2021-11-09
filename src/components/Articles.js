@@ -1,17 +1,19 @@
 import React  from 'react'
-import Article from './Article'
+//import Article from './Article'
 
-export default function Articles(props) {
+ const Articles = (props) => {
     return (
-        <div>
-        <ul>
-            {props.articles.map((article) => {
-
-                return(
-                    <Article article={article}/>
-                )
-            })}
-        </ul>
-        </div>
+      <div>
+        {props.relatedArticles.map(Article => (
+          <div className="story-container" key={Article.objectID}>
+            <h4 style={{margin: "5px"}}>{Article.title}</h4>
+            <p style={{fontSize: "20px", margin: "5px"}}>Author: {Article.author}</p>
+            <a href={Article.url} target="_blank" rel="noreferrer" style={{color: "white", fontSize: "18px"}}>Visit Website</a>
+          </div>
+        ))}
+      </div>
     )
-}
+  }
+
+  export default Articles;
+  
