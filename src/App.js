@@ -5,7 +5,7 @@ import Articles from './components/Articles';
 
 import './App.css';
 
-const URL = 'https://api.punkapi.com/v2/beers'
+let url = ''
 function App () {
 
   //I went for generic state, setState, 
@@ -27,10 +27,19 @@ function App () {
   const search = (event) => {
     event.preventDefault();
     console.log('I am searching')
+  
 
     // const author = this.state.authorInput;
     //   const date = this.state.dateInSeconds;
     //   let url = '';
+    
+    //   if(author) {
+  //     url = `https://hn.algolia.com/api/v1/search?tags=story,author_${author}`;
+  //   } else if(date) {
+  //     url=`http://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=created_at_i>${date}`
+  //   } else {
+  //     alert("Please enter search criteria in at least one input");
+  //   } 
   }
 
   
@@ -90,13 +99,7 @@ function App () {
   // }
 
 
-  //   if(author) {
-  //     url = `https://hn.algolia.com/api/v1/search?tags=story,author_${author}`;
-  //   } else if(date) {
-  //     url=`http://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=created_at_i>${date}`
-  //   } else {
-  //     alert("Please enter search criteria in at least one input");
-  //   } 
+  
 }
 
 
