@@ -13,6 +13,7 @@ function App () {
   //I went for generic state, setState, 
   //bc I'm hoping we will only need to do this once?
   const [state, setState] = useState([])
+  const [articleData, setArticleData] = useState([])
   
   // useEffect(() => {
   //   console.log('I mounted')
