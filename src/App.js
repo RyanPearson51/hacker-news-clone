@@ -6,42 +6,83 @@ import Articles from './components/Articles';
 import './App.css';
 
 let url = ''
+// let author = '' 
+let authorInput = false
 function App () {
 
   //I went for generic state, setState, 
   //bc I'm hoping we will only need to do this once?
   const [state, setState] = useState([])
-
-  useEffect(() => {
-    console.log('I mounted')
-    fetch(URL)
-    .then((res)=>res.json())
-    .then((data)=> setState(data))
-  }, [])
-
-  //this is connected
-  //and I think it sets the state or holds the data
-  //for the author and date fields
-  //but I'm not sure how to adjust this
-  //using functional programming
-  const search = (event) => {
-    event.preventDefault();
-    console.log('I am searching')
   
+  // useEffect(() => {
+  //   console.log('I mounted')
+  //   fetch(url)
+  //   .then((res)=>res.json())
+  //   .then((data)=> setState(data))
+  // }, [])
 
-    // const author = this.state.authorInput;
-    //   const date = this.state.dateInSeconds;
-    //   let url = '';
+ 
+  
+   const search = (event) => {
     
-    //   if(author) {
-  //     url = `https://hn.algolia.com/api/v1/search?tags=story,author_${author}`;
-  //   } else if(date) {
-  //     url=`http://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=created_at_i>${date}`
-  //   } else {
-  //     alert("Please enter search criteria in at least one input");
-  //   } 
-  }
+    event.preventDefault();
+    console.log("state in search() upon submit: ", state)
+    console.log("url in search(): ", url)
+    console.log("authorInput: ", authorInput)
+    if (authorInput === true ){
+    url = `https://hn.algolia.com/api/v1/search?tags=story,author_${state}`
+    }
+    console.log("url: ", url)
+    fetch(url)
+   .then((res)=>res.json())
+   .then((data)=> setState(data))
 
+     //this is assigning the author input to the variable author,
+     //but I haven't gotten or don't know how authorInput was obtained
+     // const author = this.state.authorInput;
+     //   const date = this.state.dateInSeconds;
+    
+     //just to test accessing the API
+    //  url = 'http://hn.algolia.com/api/v1/items/1'
+     //   if(author) {
+     //nope, this gets error "Cannot read property "type" of undefined"
+     //console.log("calling useEffect in search():  ", useEffect())
+   //   } else if(date) {
+   //     url=`http://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=created_at_i>${date}`
+   //   } else {
+   //     alert("Please enter search criteria in at least one input");
+   //   } 
+   
+   
+   }
+  
+  const handleChange = (event) => {
+    event.preventDefault();
+    // console.log("event.target.name in handleChange()", event.target.name)
+    setState(event.target.value)
+   
+    // console.log("author in handleChange: ", author)
+  if (event.target.name === "authorInput") {
+    console.log("the input is authorInput")
+    authorInput = true
+    console.log("authorInput in handleChange()", authorInput)
+  }
+  
+    // if (event.target.name === "authorInput"){
+    //   console.log("this is an author input")
+    //   let authorInput = setState(event.target.value)
+    //   return authorInput
+    // }
+    
+
+    // console.log("event.target.value in handleChange(): ", event.target.value )
+    // const epochDate = new Date(event.target.value).getTime();
+    // const searchDate = epochDate.toString().slice(0,10);
+    // this.setState({
+    //   [event.target.name]: event.target.value,
+    //   dateInSeconds: searchDate
+    // })
+  }
   
     return  (
       <div className="App">
@@ -56,7 +97,7 @@ function App () {
           which will be the Articles component */}
       
           <p>This is search form
-            <SearchForm state={state} search={search}/>
+            <SearchForm state={state} handleChange={handleChange}  search={search} url={url}/>
             {/* This is just copy-pasted from the OOP version
               <SearchForm 
             search={this.search} 
@@ -89,14 +130,7 @@ function App () {
   // }
 
 
-  // handleChange = (event) => {
-  //   const epochDate = new Date(event.target.value).getTime();
-  //   const searchDate = epochDate.toString().slice(0,10);
-  //   this.setState({
-  //     [event.target.name]: event.target.value,
-  //     dateInSeconds: searchDate
-  //   })
-  // }
+ 
 
 
   
