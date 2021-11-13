@@ -13,6 +13,7 @@ function App () {
   //I went for generic state, setState, 
   //bc I'm hoping we will only need to do this once?
   const [state, setState] = useState([])
+  const [articleData, setArticleData] = useState([])
   
   // useEffect(() => {
   //   console.log('I mounted')
@@ -35,7 +36,8 @@ function App () {
     console.log("url: ", url)
     fetch(url)
    .then((res)=>res.json())
-   .then((data)=> setState(data))
+   .then((data)=> setArticleData(data))
+   console.log("articleData in search(): ", articleData)
 
      //this is assigning the author input to the variable author,
      //but I haven't gotten or don't know how authorInput was obtained
@@ -105,7 +107,8 @@ function App () {
             authorInput={this.state.authorInput} 
             dateInput={this.state.dateInput} 
             />
-            <Articles relatedArticles={this.state.relatedArticles} /> */}
+            */}
+            <Articles articleData={articleData} /> 
           </p>
     
         </header>
