@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 
 import SearchForm from './components/SearchForm';
 import Articles from './components/Articles';
-
 import './App.css';
 
 let url = ''
