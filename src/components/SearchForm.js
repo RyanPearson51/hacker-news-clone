@@ -3,6 +3,7 @@ import React,{useEffect, useState}  from 'react'
 
 const SearchForm = (props) => {
   console.log("state passed as props to SearchForm props.state: ", props.state)
+   //console.log("articleData passed as props to SearchForm props.state: ", props.articleData)
   
   
   return (
