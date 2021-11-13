@@ -34,7 +34,6 @@ const SearchForm = (props) => {
 export default SearchForm;
 
 /*import React from 'react'
-
 export default function SearchForm() {
     return (
         <div>
