@@ -1,5 +1,4 @@
 /*import React, {useState} from 'react'
-
 export default function Article(props) {
     return (
         <div className="story-container" key={props.article.objectID}>
@@ -10,4 +9,3 @@ export default function Article(props) {
       )}
    */
     
-
