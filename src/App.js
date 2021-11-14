@@ -21,8 +21,17 @@ function App () {
   //as a results list
   const [articleData, setArticleData] = useState([])
   
- 
- 
+  //need something like this in the App function, because the urls are in the search function below
+  //im not sure what else should or shouldnt go in
+ /*
+  useEffect(() => {
+    console.log('I mounted')
+    fetch(url)
+    .then((res)=>res.json())
+    .then((data)=> setArticleData(data.hits))
+  }, [])*/
+
+
   
    const search = (event) => {
     event.preventDefault();
