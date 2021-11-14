@@ -2,7 +2,7 @@ import React  from 'react'
 //import Article from './Article'
 
  const Articles = (props) => {
-   console.log("articleData in Articles: ", props.articleData)
+ console.log("articleData in Articles: ", props.articleData)
     return (
       <div>
         -
