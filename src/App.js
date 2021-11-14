@@ -85,7 +85,6 @@ function App () {
       dateInput = event.target.value
     }
   }
-
   
     return  (
       <div className="App">
