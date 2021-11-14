@@ -1,4 +1,4 @@
-import React  from 'react'
+/*import React  from 'react'
 //import Article from './Article'
 
 export default function Articles (props) {
@@ -17,7 +17,7 @@ export default function Articles (props) {
       )
 }
 
-
+*/
 
  
 /*
