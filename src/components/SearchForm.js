@@ -1,28 +1,29 @@
 import React,{useEffect, useState}  from 'react'
 
 
-const SearchForm = (props) => {
-  console.log("state passed as props to SearchForm props.state: ", props.state)
+const SearchForm = ({state, authorInput, searchDate, handleChange, search}) => {
+  console.log("state passed as props to SearchForm state: ", state)
+  console.log("searchDate passed as props to SearchForm: ", searchDate)
    //console.log("articleData passed as props to SearchForm props.state: ", props.articleData)
   
   
   return (
     <div>
-      <form onSubmit={props.search}>
+      <form onSubmit={search}>
         <input 
           name="authorInput"
           type="text"
           //value={props.authorInput} 
-          value={props.state}
+          value={authorInput}
           //onChange={props.handleChange} 
-          onChange={props.handleChange}
+          onChange={handleChange}
           placeholder="Search by author"
         />
         <input 
           name="dateInput"
           type="date"
-          value={props.dateInput} 
-          onChange={props.handleChange}
+          // value={searchDate} 
+          onChange={handleChange}
         />
         <button type="submit">Search</button>
       </form>
