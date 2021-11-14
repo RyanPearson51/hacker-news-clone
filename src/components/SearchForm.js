@@ -35,7 +35,6 @@ const SearchForm = ({state, authorInput, searchDate, handleChange, search}) => {
 export default SearchForm;
 
 /*import React from 'react'
-
 export default function SearchForm() {
     return (
         <div>
