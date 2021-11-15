@@ -2,9 +2,14 @@ import React  from 'react'
 //import Article from './Article'
 
  const Articles = (props) => {
- console.log("articleData in Articles: ", props.articleData)
-    return (
-      <div>
+//  console.log("articleData in Articles: ", props.articleData)
+    return <div>
+         <ul>
+      {props.articleData.map((element) => {
+      
+          return console.log("element in map in Articles.js: ", element)
+      })}
+        </ul>
         
         {/* {props.relatedArticles.map(Article => (
           <div className="story-container" key={Article.objectID}>
@@ -14,7 +19,6 @@ import React  from 'react'
           </div>
         ))} */}
       </div>
-    )
   }
 
   export default Articles;

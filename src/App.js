@@ -6,6 +6,9 @@ import Articles from './components/Articles';
 import './App.css';
 
 let url = ''
+//  let url = `https://hn.algolia.com/api/v1/search?tags=story,author_pg`
+//  let url = 'https://randomuser.me/api?results=25'
+
 let authorInput = ""
 let dateInput = ""
 
@@ -21,9 +24,6 @@ function App () {
   //data that are sent to Articles.js to be rendered
   //as a results list
   const [articleData, setArticleData] = useState([])
-  
- 
- 
   
    const search = (event) => {
     event.preventDefault();
@@ -58,7 +58,7 @@ function App () {
     //based on the url
     fetch(url)
    .then((res)=>res.json())
-   .then((data)=> setArticleData(data))
+   .then((data)=> setArticleData(data.hits))
    console.log("articleData in search(): ", articleData)
    }
   
@@ -79,6 +79,7 @@ function App () {
   }
   
     return  (
+
       <div className="App">
         <header className="App-header">
           <h1>Search for Hacker News</h1>
@@ -87,8 +88,8 @@ function App () {
             <Articles articleData={articleData} /> 
           </p>
     
-        </header>
-      </div> 
+      //   </header>
+      // </div> 
     )
   
 }
