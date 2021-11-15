@@ -2,6 +2,7 @@
 import React  from 'react'
 //import Article from './Article'
 
+
 export default function Articles (props) {
   return (
     <div>
@@ -9,7 +10,7 @@ export default function Articles (props) {
       {props.articleData.map((article, index) => {
           return (
               <li className="list">
-                  <h3>{props.article.hits.title}<a href={props.article.hits.url} id={"url"}>{` (${props.article.hits.url})`}</a></h3>
+                  <h3>{article.title}</h3><a href={article.url} id={"url"}>{` (${article.url})`}</a>
               </li>
           )
       })}
@@ -17,4 +18,3 @@ export default function Articles (props) {
       </div>
       )
 }
-

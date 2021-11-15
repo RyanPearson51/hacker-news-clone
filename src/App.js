@@ -5,6 +5,9 @@ import Articles from './components/Articles';
 import './App.css';
 
 let url = ''
+//  let url = `https://hn.algolia.com/api/v1/search?tags=story,author_pg`
+//  let url = 'https://randomuser.me/api?results=25'
+
 let authorInput = ""
 let dateInput = ""
 
@@ -21,18 +24,7 @@ function App () {
   //as a results list
   const [articleData, setArticleData] = useState([])
   
-  //need something like this in the App function, because the urls are in the search function below
-  //im not sure what else should or shouldnt go in
- /*
-  useEffect(() => {
-    console.log('I mounted')
-    fetch(url)
-    .then((res)=>res.json())
-    .then((data)=> setArticleData(data.hits))
-  }, [])*/
 
-
-  
    const search = (event) => {
     event.preventDefault();
     //if dateInput exists, search by date URL
@@ -48,14 +40,22 @@ function App () {
       //this is labeled startOfDay because it has the date in seconds
       //for only the date, not the date and a time
       const startOfDay = dateToSeconds.toString().slice(0,10);
+      const startOfDayInt = parseInt(startOfDay, 10)
+      console.log("Start of day in integers: ", startOfDayInt)
+
 
       //because the API db has the exact date and time in seconds
       //and we only have the start of the day
       //this calculates the end of the day
-      const endOfDay = (startOfDay + 86400)
+      const endOfDayInt = (startOfDayInt + 86400)
+      console.log("endOfDayInt: ", endOfDayInt)
+
+      const endOfDay = endOfDayInt.toString()
+      console.log("endOfDay: ", endOfDay)
+
 
       //search for dates between the start and end of the date input
-      url = `http://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=created_at_i>=${startOfDay}&&<${endOfDay}`
+      url = `http://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=created_at_i>=${startOfDay},created_at_i<=${endOfDay}`
       //reset the input to blank
       // dateInput = ''
     }else if(authorInput){
@@ -66,7 +66,7 @@ function App () {
     //based on the url
     fetch(url)
    .then((res)=>res.json())
-   .then((data)=> setArticleData(data))
+   .then((data)=> setArticleData(data.hits))
    console.log("articleData in search(): ", articleData)
    }
   
@@ -87,16 +87,17 @@ function App () {
   }
   
     return  (
+
       <div className="App">
         <header className="App-header">
-          <h1>Search for Hacker News</h1>
-          <p>This is search form
+          <h1>Hacker News</h1>
+          <p>Search by Date OR by Author
             <SearchForm state={state} authorInput ={authorInput} searchDate={searchDate} handleChange={handleChange}  search={search} url={url}/>
             <Articles articleData={articleData} /> 
           </p>
     
-        </header>
-      </div> 
+      </header>
+    </div> 
     )
   
 }
