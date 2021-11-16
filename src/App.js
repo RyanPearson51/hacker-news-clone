@@ -98,9 +98,11 @@ function App () {
 
       <div className="App">
         <header className="App-header">
-          <h1>Search for Hacker News</h1>
-          <p>This is search form
-            <SearchForm state={state} authorInput ={authorInput} dateInput={dateInput} searchDate={searchDate} handleChange={handleChange}  search={search} url={url} handleClick={handleClick}/>
+
+          <h1>Hacker News</h1>
+          <p>Search by Date OR by Author
+            <SearchForm state={state} authorInput ={authorInput} searchDate={searchDate} handleChange={handleChange}  search={search} url={url}/>
+
             <Articles articleData={articleData} /> 
           </p>
     

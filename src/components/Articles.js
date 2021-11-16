@@ -10,7 +10,9 @@ export default function Articles (props) {
       {props.articleData.map((article, index) => {
           return (
               <li className="list">
-                  <h3>{article.title}<a href={article.url} id={"url"}>{` (${article.url})`}</a></h3>
+
+                  <h3>{article.title}</h3><a href={article.url} id={"url"}>{` (${article.url})`}</a>
+
               </li>
           )
       })}
@@ -18,5 +20,4 @@ export default function Articles (props) {
       </div>
       )
 }
-
 
