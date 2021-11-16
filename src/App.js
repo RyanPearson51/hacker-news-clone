@@ -61,7 +61,10 @@ function App () {
       //search for dates between the start and end of the date input
       url = `http://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=created_at_i>=${startOfDay},created_at_i<=${endOfDay}`
       //reset the input to blank
-      dateInput = ""
+      dateInput = ''
+      setSearchDate(dateInput)
+      console.log("Search date: ", searchDate, "and dateInput: ", dateInput)
+      
     }else if(authorInput){
       url = `https://hn.algolia.com/api/v1/search?tags=story,author_${state}`
       authorInput = ""
@@ -101,7 +104,7 @@ function App () {
 
           <h1>Hacker News</h1>
           <p>Search by Date OR by Author
-            <SearchForm state={state} authorInput ={authorInput} searchDate={searchDate} handleChange={handleChange}  search={search} url={url}/>
+            <SearchForm state={state} authorInput ={authorInput} searchDate={searchDate} handleChange={handleChange}  search={search} url={url} dateInput={dateInput}/>
 
             <Articles articleData={articleData} /> 
           </p>
