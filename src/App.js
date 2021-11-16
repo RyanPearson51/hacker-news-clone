@@ -40,6 +40,8 @@ function App () {
       //this is labeled startOfDay because it has the date in seconds
       //for only the date, not the date and a time
       const startOfDay = dateToSeconds.toString().slice(0,10);
+      //turn the date back into an integer
+      //so it can be used to calculate endOfDay
       const startOfDayInt = parseInt(startOfDay, 10)
       console.log("Start of day in integers: ", startOfDayInt)
 
@@ -50,6 +52,8 @@ function App () {
       const endOfDayInt = (startOfDayInt + 86400)
       console.log("endOfDayInt: ", endOfDayInt)
 
+      //turn the endOfDay (which is actually midnight of the next day)
+      //into a string, because that's what the query is expecting
       const endOfDay = endOfDayInt.toString()
       console.log("endOfDay: ", endOfDay)
 
@@ -57,9 +61,10 @@ function App () {
       //search for dates between the start and end of the date input
       url = `http://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=created_at_i>=${startOfDay},created_at_i<=${endOfDay}`
       //reset the input to blank
-      // dateInput = ''
+      dateInput = ""
     }else if(authorInput){
       url = `https://hn.algolia.com/api/v1/search?tags=story,author_${state}`
+      authorInput = ""
     }
     
     //fetch all stories that match the criteria
@@ -69,12 +74,15 @@ function App () {
    .then((data)=> setArticleData(data.hits))
    console.log("articleData in search(): ", articleData)
    }
-  
+ const handleClick = (event) => {
+  console.log("in handleClick event.target.value: ", typeof event.target.value)
+ }
   const handleChange = (event) => {
     event.preventDefault();
     //set the state for the data
     //based on which input has data
     if (event.target.name === "authorInput") {
+
       setState(event.target.value)
       console.log("the input is authorInput")
       authorInput = event.target.value
@@ -90,9 +98,11 @@ function App () {
 
       <div className="App">
         <header className="App-header">
+
           <h1>Hacker News</h1>
           <p>Search by Date OR by Author
             <SearchForm state={state} authorInput ={authorInput} searchDate={searchDate} handleChange={handleChange}  search={search} url={url}/>
+
             <Articles articleData={articleData} /> 
           </p>
     
